@@ -1,5 +1,4 @@
 package derived_datatype;
-
 import java.util.Scanner;
 
 public class Queue {
@@ -21,13 +20,22 @@ public class Queue {
 
             switch (choice) {
                 case 1:
-                    System.out.println("Enter the number to enqueue:");
-                    int num = scn.nextInt();
-                    scn.nextLine();
-                    kyutKo.enqueue(num);
+                    if (kyutKo.isFull()) {
+                        System.out.println("The queue is already full.");
+                    } else {
+                        System.out.println("Enter the number to enqueue:");
+                        int num = scn.nextInt();
+                        scn.nextLine();
+                        System.out.println("Element to be inserted in the Queue: " + num);
+                        kyutKo.enqueue(num);
+                    }
                     break;
                 case 2:
-                    kyutKo.dequeue();
+                    if (kyutKo.isEmpty()) {
+                        System.out.println("The queue is empty.");
+                    } else {
+                        kyutKo.dequeue();
+                    }
                     break;
                 case 3:
                     kyutKo.displayQueue();
@@ -35,7 +43,7 @@ public class Queue {
                 case 4:
                     System.exit(0);
                 default:
-                    System.out.println("Invalid choice. Please try again.");
+                    System.out.println("Invalid choice.");
             }
         }
     }
@@ -77,25 +85,17 @@ class QueueClass {
     }
 
     public void enqueue(int num) {
-        if (isFull()) {
-            System.out.println("The queue is already full");
-        } else {
-            rear = (rear + 1) % queueArray.length;
-            queueArray[rear] = num;
-            currentQueueSize++;
-        }
+        rear++;
+        queueArray[rear] = num;
+        currentQueueSize++;
     }
 
     public void dequeue() {
-        if (isEmpty()) {
-            System.out.println("The queue is empty");
-        } else {
-            int dequeuedElement = queueArray[front];
-            front = (front + 1) % queueArray.length;
-            currentQueueSize--;
+        int dequeuedElement = queueArray[front];
+        front++;
+        currentQueueSize--;
 
-            System.out.println("Dequeued element: " + dequeuedElement);
-        }
+        System.out.println("Dequeued element: " + dequeuedElement);
     }
 
     public void displayQueue() {
@@ -103,9 +103,8 @@ class QueueClass {
             System.out.println("The queue is empty");
         } else {
             System.out.println("\n\n\n\n\n\n QUEUE ELEMENTS ARE: ");
-            for (int i = 0; i < currentQueueSize; i++) {
-                int index = (front + i) % queueArray.length;
-                System.out.print(queueArray[index] + " ");
+            for (int i = front; i <= rear; i++) {
+                System.out.print(queueArray[i] + " ");
             }
             System.out.println();
         }
