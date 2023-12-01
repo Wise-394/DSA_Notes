@@ -5,10 +5,10 @@ public class Tree {
     Node tree = new Node(1);
     TreeOperations operations = new TreeOperations();
 
-    tree.lefNode = new Node(2);
+    tree.leftNode = new Node(2);
     tree.rightNode = new Node(3);
-    tree.lefNode.lefNode = new Node(4);
-    tree.lefNode.rightNode = new Node(5);
+    tree.leftNode.leftNode = new Node(4);
+    tree.leftNode.rightNode = new Node(5);
 
     System.out.println("tree in preorder:");
     operations.preOrder(tree);
@@ -24,12 +24,12 @@ public class Tree {
 class Node{
     int value;
     Node rightNode;
-    Node lefNode;
+    Node leftNode;
 
     Node(int value){
         this.value = value;
         this.rightNode = null;
-        this.lefNode = null;
+        this.leftNode = null;
     }
 }
 
@@ -38,20 +38,20 @@ class TreeOperations{
     public void preOrder(Node node){
         if (node != null){
             System.out.print(node.value + " ");
-            preOrder(node.lefNode); 
+            preOrder(node.leftNode); 
             preOrder(node.rightNode); 
         }
     }
     public void inOrder(Node node){
         if(node != null){
-            preOrder(node.lefNode); 
+            preOrder(node.leftNode); 
             System.out.print(node.value + " ");
             preOrder(node.rightNode); 
         }
     }
     public void postOrder(Node node){
         if(node != null){
-            preOrder(node.lefNode);
+            preOrder(node.leftNode);
             preOrder(node.rightNode); 
             System.out.print(node.value + " ");
         }
