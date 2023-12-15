@@ -1,63 +1,68 @@
 package nonlinear_data_structure;
 
 public class Tree {
-    public static void main(String[] args) {
-    Node tree = new Node(1);
-    TreeOperations operations = new TreeOperations();
-
-    tree.leftNode = new Node(2);
-    tree.rightNode = new Node(3);
-    tree.leftNode.leftNode = new Node(4);
-    tree.leftNode.rightNode = new Node(5);
-
-    System.out.println("tree in preorder:");
-    operations.preOrder(tree);
-
-    System.out.println("\ntree in inorder:");
-    operations.inOrder(tree);
-
-    System.out.println("\ntree in postorder:");
-    operations.postOrder(tree);
-    }
+    public static void main(String[] var0) {
+        Node var1 = new Node("Y");
+        TreeOperations var2 = new TreeOperations();
+        var1.leftNode = new Node("O");
+        var1.rightNode = new Node("U");
+        var1.leftNode.leftNode = new Node("L");
+        var1.leftNode.rightNode = new Node("I");
+        var1.rightNode.leftNode = new Node("K");
+        var1.rightNode.rightNode = new Node("E");
+        var1.rightNode.leftNode.rightNode = new Node("C");
+        var1.rightNode.rightNode.leftNode = new Node("S");
+        System.out.println("tree in preorder:");
+        var2.preOrder(var1);
+        System.out.println("\ntree in inorder:");
+        var2.inOrder(var1);
+        System.out.println("\ntree in postorder:");
+        var2.postOrder(var1);
+     }
 }
 
 class Node{
-    int value;
+    String value;
     Node rightNode;
     Node leftNode;
 
-    Node(int value){
+    Node(String value){
         this.value = value;
         this.rightNode = null;
         this.leftNode = null;
     }
 }
 
-class TreeOperations{
-   
-    public void preOrder(Node node){
-        if (node != null){
-            System.out.print(node.value + " ");
-            preOrder(node.leftNode); 
-            preOrder(node.rightNode); 
-        }
-    }
-    public void inOrder(Node node){
-        if(node != null){
-            preOrder(node.leftNode); 
-            System.out.print(node.value + " ");
-            preOrder(node.rightNode); 
-        }
-    }
-    public void postOrder(Node node){
-        if(node != null){
-            preOrder(node.leftNode);
-            preOrder(node.rightNode); 
-            System.out.print(node.value + " ");
-        }
-    }
+class TreeOperations {
 
+   public void preOrder(Node var1) {
+      if (var1 != null) {
+         System.out.print(var1.value + " ");
+         this.preOrder(var1.leftNode);
+         this.preOrder(var1.rightNode);
+      }
+
+   }
+
+   public void inOrder(Node var1) {
+      if (var1 != null) {
+         this.inOrder(var1.leftNode);
+         System.out.print(var1.value + " ");
+         this.inOrder(var1.rightNode);
+      }
+
+   }
+
+   public void postOrder(Node var1) {
+      if (var1 != null) {
+         this.postOrder(var1.leftNode);
+         this.postOrder(var1.rightNode);
+         System.out.print(var1.value + " ");
+      }
+
+   }
 }
+
 //notes for future reference <3
 // Preorder Traversal: parent then Left then Right
 // Inorder Traversal: Left then parent then Right
